@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>Comments Page</title>
+        <link rel="stylesheet" href="websystems.css">
+        <!-- Favicon generated using https://favicon.io/favicon-generator/ -->
+        <link rel="icon" type="image/png" sizes="32x32" href="images/favicon-32x32.png">
+    </head>
+    <body>
+        <p class="missing-css-message">Hey, either something went wrong, or you've disabled the CSS on purpose! Just letting you know! (The CSS example won't work, because there's no CSS!)</p>
+        <div class="banner">
+            <h1 class="banner-text">Comments</h1>
+        </div>
+        <div class="navbar">
+            <div class="center">
+                <ul class="navbar-ul">
+                    <li class="navbar-li inactive"><a href="index.html">Home</a></li>
+                    <li class="navbar-li inactive"><a href="past.html">My Past</a></li>
+                    <li class="navbar-li inactive"><a href="future.html">My Future</a></li>
+                    <li class="navbar-li active"><a href="comments.html">Comments</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="content">
+            <div class="content-section">
+                <div class="text-area-padding"></div>
+                <div class="text-area">
+                    <p class="text-area-text">I had a fun time designing this website, and learning about the numerous CSS attributes available to create all sorts of
+                        interesting features throughout my site. The Past page is my personal favourite, as I feel I was able to create a layout that made my text easily
+                        readable, by placing images between the sections of text, which were all relevant to the following paragraph. I think my website is easy to navigate,
+                        with the simple sticky navbar, and I am overall quite happy with the final product!
+                    </p>
+                </div>
+            </div>
+            <div class="content-section">
+                <div class="text-area-padding"></div>
+                <div class="text-area">
+                    <p class="text-area-header">Technical Aspects</p><br/>
+                    <p class="text-area-text">The webpage is split up into 3 main sections (not HTML section tags, just using the word section): The banner at the top, the navbar, 
+                        and then all the content below (the home page also has a footer). The content area is split into a series of sections, which contain text 
+                        areas, images, padding and titles. In the case of the Past page, between each content-section there is a div with a set height (500px) that has a fixed
+                        background image set to fill the screen, each of which has an id attribute used by selectors in the CSS to set the image that will be used as a background
+                        for that area. This, along with the in-page links, are the only two places I really used id attributes. I used class selectors to style the rest of
+                        my webpage, as ids are supposed to be used on a single element in a page, and most of the other elements were used at least twice. I could have used
+                        ids for some elements such as the navbar, but it wouldn't really of had an effect on the page, so I just went with classes.<br/>
+                        I looked into the various cool things you can do with CSS, and implemented a few of the simpler ones in my page. This includes the navbar using
+                        the <em>"position: sticky;"</em> property, which lets it stay at the top of the screen as you scroll down, which I used to make the navbar always accessible,
+                        so it is easy to navigate between pages. I also made use of the <em>"transition-duration"</em> property to animate the buttons and links throughout my 
+                        site, to increase the interactivity of my site, and make it more obvious when you can click on something. One of my favourite examples of this, is on 
+                        the index page, I added a small thin grey div under each of the three image links, that appears and grows when it is hovered over, further hinting to the
+                        user that the images are interactable links. Finally, I included a <em>"@media"</em> rule, which detects when the aspect ratio of the screen is less than
+                        a certain value, which would move the images from being next to the text, to below the text, to ensure that it was still all easily readable.
+                    </p>
+                </div>
+            </div>
+            <div class="content-section">
+                <div class="text-area-padding"></div>
+                <div class="text-area">
+                    <p class="text-area-header">Aesthetics</p><br/>
+                    <p class="text-area-text">I tried my best to chose colours for my page that would not distract the user from the content, so I went with simple monochrome, with
+                        a touch of red in the navbar. I ensured all text is easily readable, by colouring it to contrast the background it is placed on, and ensuring that there is no
+                        text that overlaps images. I have read that whitespace is an important part of a website, to ensure the viewer can understand what they should focus on, so
+                        I tried my best to incorporate whitespace in the correct quantity. Although not technically whitespace, I implemented the background images between sections
+                        for a similar reason, as it breaks up the content into easily readable areas, while also displaying images of my past work. As I mentioned in the "Technical
+                        Aspects" section, I also used the <em>"transition-duration"</em> property alongside <em>":hover"</em> selectors to engage the user to interact with parts of
+                        the website using their mouse. I implemented these small animations, so that when a user hovers their mouse over an interactable item, it would provide 
+                        feedback that makes it obvious the item is actually interactable. I've included an example below!
+                    </p>
+                </div>
+                <div class="text-area-padding"></div>
+            </div>
+            <div class="example-container">
+                <table><tr><td>
+                    <a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ" class="table-link">
+                        <img src="images/question.svg" alt="An example image link" class="table-img">
+                        <div class="table-link-text"><p>An example!</p></div>
+                        <div class="table-link-underline"></div>
+                    </a>
+                </td></tr></table>
+            </div>
+            <div class="content-section">
+                <div class="text-area-padding"></div>
+                <div class="text-area">
+                    <p class="text-area-header">Accessibility</p><br/>
+                    <p class="text-area-text">According to the W3 website, three of the most common cases of accessibility requirements are providing alternative text for images,
+                        support for only keyboard input (no mouse) and transcripts for audio. To meet these standards, I have ensured that all the img tags in my html have accurate
+                        <em>alt</em> attributes, that describe the image properly. My website is also entirely navigable with the use of only a keyboard, through use of the arrow
+                        keys to scroll, and tab and enter to select links and buttons and navigate to different pages. Finally, using Microsoft Edges inbuilt "Read Aloud" function,
+                        I ensured that the content of my website was able to be read by screen readers, which was a success. Given there are no audio aspects of the site that would
+                        require transcripts for the site, I would say that my website is accesible to almost all people.
+                    </p>
+                </div>
+                <div class="text-area-padding"></div>
+            </div>
+        </div>
+    </body>
+</html>

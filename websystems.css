@@ -1,0 +1,315 @@
+ body {
+  width: 100%;
+  height: 100%;
+  margin: 0px;
+  font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+  background-color: #EEE;
+}
+
+.missing-css-message {
+  display: none;
+}
+
+.center {
+   max-width: 1100px;
+   margin: auto;
+}
+
+div.banner {
+  margin: 0px;
+  padding: 0px;
+  /*This image was created by me in a program called Blender*/
+  background-image: url("images/banner-balloons.jpg");
+  background-repeat: no-repeat;
+  background-position: top;
+  background-attachment: fixed;
+  background-color: #111;
+}
+
+.banner-text {
+  vertical-align: 30%;
+  color: white;
+  margin: auto;
+  text-align: center;
+  font-size: 15vmin;
+  text-shadow: 5px 5px #111;
+  padding-bottom: 30px;
+}
+
+div.navbar {
+  position: sticky;
+  top: 0px;
+  background-color: #333;
+  z-index: 100;
+}
+
+.navbar-ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+}
+
+.navbar-li {
+  float: left;
+}
+
+.navbar-li a {
+  display: block;
+  color: white;
+  text-decoration: none;
+  text-align: center;
+  padding: 12px;
+  transition: 0.5s;
+  transition-property: background-color;
+  font-size: 20px;
+}
+
+.navbar-li.inactive a:hover {
+  background-color: #111;
+}
+
+.navbar-li.active a:hover {
+  background-color: #b8391f;
+}
+
+.active {
+  background-color: #e05a3f;
+}
+
+div.back_to_top {
+  position: fixed;
+  bottom: 10px;
+  background-color: #333;
+  z-index: 100;
+  color: white;
+  display: block;
+  width: 150px;
+  float: right;
+  right: 20px;
+}
+
+.back_to_top a {
+  display: block;
+  color: white;
+  text-decoration: none;
+  text-align: center;
+  padding: 12px;
+  transition: 0.5s;
+  transition-property: background-color;
+  font-size: 20px;
+}
+
+.back_to_top a:hover{
+  background-color: #111;
+}
+
+.contents-link {
+  text-decoration: none;
+  color: #e05a3f;
+  transition-timing-function: ease-in-out;
+  transition-property: color, padding-left;
+  transition-duration: 0.1s;
+  padding-left: 0px;
+}
+
+.contents-link:hover {
+  color: #ff7357;
+  padding-left: 10px;
+}
+
+.contents-link:active {
+  color: #b8391f;
+  padding-left: 15px;
+}
+
+a.page-link {
+    display: block;
+    top: -100px;
+    visibility: hidden;
+    position: relative;
+}
+
+.content-section {
+  min-height: 50px;
+  background-color: #EEE;
+}
+
+.text-area {
+  padding-top: 0px;
+  padding-bottom: 0px;
+  padding-left: 15px;
+  padding-right: 15px;
+  max-width: 1100px;
+  margin: auto;
+  font-size: 25px;
+  text-align: justify;
+  text-justify: inter-word;
+}
+
+.in-text-link {
+  color: #e05a3f;
+  transition-timing-function: ease-in-out;
+  transition-property: color;
+  transition-duration: 0.1s;
+  padding-left: 0px;
+}
+
+.in-text-link:hover {
+  color: #ff7357;
+}
+
+p.text-area-header {
+  padding: 0;
+  color: #000;
+  font-size: 33px;
+}
+
+p {
+  font-weight: normal;
+  color: #444;
+  padding: 0;
+  margin: 0;
+}
+
+.row {
+  display: flex;
+}
+
+.column {
+  flex: 50%;
+  padding: 10px;
+}
+
+.inline-img {
+  width: 100%;
+  box-shadow: 0px 0px 10px black;
+}
+
+.no-shadow {
+  box-shadow: none;
+}
+
+.image-subtitle-padder {
+  height: 75px;
+}
+
+div.text-area-padding {
+  padding-top: 50px;
+}
+
+.fixed-image {
+  margin: 0px;
+  padding: 0px;
+  height: 500px;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-color: #111;
+  background-position: center;
+  background-size: cover;
+}
+
+table {
+  table-layout: fixed;
+  width: 100%;
+  /*border: 1px black solid ;*/
+}
+
+td {
+  width: 33%;
+}
+
+.table-link {
+  text-decoration: none;
+  color: #999;
+  text-align: center;
+  font-size: 30px;
+}
+
+.table-img {
+  width: 80%;
+  margin: auto;
+  display: block;
+  padding-bottom: 20px;
+  transition-duration: 300ms;
+}
+
+td:hover .table-img {
+  opacity: 0.7;
+}
+
+.table-link-underline {
+  height: 3px;
+  width: 0%;
+  background-color:  #999;
+  margin: auto;
+  transition-duration: 300ms;
+}
+
+td:hover .table-link-underline {
+  width: 100%;
+}
+
+.example-container {
+  width: 20rem;
+  margin: auto;
+}
+
+.footer {
+  background-color: #777;
+  bottom: 0;
+  position: fixed;
+  width: 100%;
+  margin-bottom: 0;
+}
+
+.footer-content {
+  padding: 0px 15px;
+  max-width: 1100px;
+  margin: auto;
+  font-size: 25px;
+  text-align: center;
+  color: #EEE;
+}
+
+.footer-content a {
+  color: #FFF;
+}
+
+/*The "Scratch" logo in this image does not belong to me, and can be found at https://en.scratch-wiki.info/wiki/Scratch_Media*/
+#past-image1 {
+  background-image: url("images/scratch-banner.jpg");
+}
+
+/*The "Python", "Eclipse" and "Minecraft" logos in this image do not belong to me, and can be found with these links:
+  Python Logo: https://commons.wikimedia.org/wiki/File:Python-logo-notext.svg
+  Eclipse Logo: https://worldvectorlogo.com/logo/eclipse-11
+  Minecraft Logo: https://freebiesupply.com/logos/minecraft-logo-2/*/
+#past-image2 {
+  background-image: url("images/early-programming-banner.jpg");
+}
+
+#past-image3 {
+  background-image: url("images/robot-banner.jpg");
+}
+
+/*This image was made by me in a program called Blender3D*/
+#past-image4 {
+  background-image: url("images/fracture-fog.jpg");
+}
+
+/*This is a screenshot from a game called Minecraft (if you don't know Minecraft, I will be absolutely baffled) using a mod called OpenComputers, with a computer running MineOS*/
+#past-image5 {
+  background-image: url("images/mine-os-screenshot.jpg");
+}
+
+/*This image is a screenshot from the game titled "Gemlight" that I created*/
+#past-image6 {
+  background-image: url("images/gemlight-screenshot.jpg");
+}
+
+@media (max-aspect-ratio: 5/4){
+  .row {
+    display: block;
+  }
+}
