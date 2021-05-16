@@ -20,9 +20,10 @@ div.banner {
   padding: 0px;
   background-image: url("images/cape-york.jpg");
   background-repeat: no-repeat;
-  background-position: top;
+  background-position: center;
   background-attachment: fixed;
   background-color: #111;
+  background-size: cover;
 }
 
 .banner-text {
