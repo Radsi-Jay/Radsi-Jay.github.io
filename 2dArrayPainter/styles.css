@@ -1,0 +1,98 @@
+body {
+    background-color: #313131;
+}
+
+#content {
+    background-color: #414141;
+    padding: 30px;
+    border-radius: 30px;
+    display: flex;
+}
+
+#left-panel {
+    flex: 5;
+}
+
+label {
+    color: #999999;
+    width: 40px;
+    display: inline-block;
+}
+
+input[type=number] {
+    background-color: #525252;
+    color: white;
+    border: none;
+    margin: 5px 15px;
+    width: 50px;
+    padding: 3px;
+}
+
+#divider {
+    width: 3px;
+    margin: 0px 30px;
+    background-color: #737373;
+}
+
+#right-panel {
+    flex: 1;
+}
+
+table {
+    border-collapse: collapse;
+    overflow: scroll;
+    width: max-content 100px;
+}
+
+#output {
+    margin-top: 20px;
+    background-color: #525252;
+    padding: 30px;
+    border-radius: 30px;
+    width: fit-content;
+    color: #DDDDDD;
+}
+
+.centre-h {
+    margin: auto;
+    width: fit-content;
+}
+
+td {
+    background-color: #4CAF50;
+    width: 15px;
+    height: 15px;
+    border: 1px solid #414141;
+}
+
+td:hover {
+    background-color: red;
+}
+
+#brush-container {
+    margin-top: 10px;
+}
+
+.brush-info {
+    margin-top: 5px;
+    background-color: #525252;
+    padding: 10px;
+    border-radius: 10px;
+    color: #DDDDDD;
+}
+
+.brush-info.selected {
+    background-color: #727272;
+}
+
+#new-brush {
+    background-color: #4CAF50; /* Green */
+    border: none;
+    color: white;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    padding: 5px;
+    font-size: medium;
+    margin: 20px 0px;
+}

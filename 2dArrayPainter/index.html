@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>2D Array Painter</title>
+        <link rel="stylesheet" href="styles.css">
+    </head>
+    <body onload="init();">
+        <div id="content">
+            <div id="left-panel">
+                <table class="centre-h" id="canvas"></table>
+                <p class="centre-h" id="output">out</p>
+            </div>
+
+            <div id="divider"></div>
+
+            <div id="right-panel">
+                <div id="inputs">
+                    <!-- <label for="brushInput">Brush</label>
+                    <input type="number" id="brushInput" step="1" value="0"><br/> -->
+                    <label for="xinput">Width</label>
+                    <input type="number" id="xinput" step="1" min="1" onChange="refreshCanvasSize();" value="10"><br/>
+                    <label for="yinput">Height</label>
+                    <input type="number" id="yinput" step="1" min="1" onChange="refreshCanvasSize();" value="10"><br/>
+                </div>
+                <div id="brush-container">
+                    <template id="brush-info-template">
+                        <div class="brush-info">
+                            <input type="color" class="brush-color">
+                            <input type="text" class="brush-value">
+                        </div>
+                    </template>
+                </div>
+                <button id="new-brush">New brush</button>
+            </div>
+        </div>
+        <script src="2dArrayPainter.js"></script>
+    </body>
+</html>
