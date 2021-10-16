@@ -1,0 +1,44 @@
+body {
+    background-color: #222;
+    color: white;
+    font-family: Helvetica, sans-serif;
+}
+
+#content {
+    background-color: #555;
+    max-width: 600px;
+    padding: 10px;
+    border-radius: 30px;
+    box-shadow: 10px 10px 5px black;
+    margin: auto;
+}
+
+h1 {
+    text-align: center;
+}
+
+.counter {
+    margin: auto;
+    position: relative;
+    width: min-content;
+    padding: 20px;
+}
+
+.counter-image {
+    width: 100px;
+    height: 100px;
+    opacity: 0.5;
+}
+
+.counter-text {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -80%);
+    font-size: 30px;
+    text-shadow: 2px 2px black;
+}
+
+.footer {
+    color: #BBB;
+}
