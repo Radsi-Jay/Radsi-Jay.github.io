@@ -163,13 +163,17 @@ function wavify(wave_element, options) {
   //  Redraw for resize with debounce
   //
   var redraw = debounce(function() {
+    newWidth = document.querySelector(settings.container).getBoundingClientRect()
+      .width;
+    newHeight = document.querySelector(settings.container).getBoundingClientRect()
+    .height;
+    console.log(newWidth + " " + width + " " + newHeight + " " + height);
+    if(width === newWidth && height === newHeight) return;
     pause();
     points = [];
     totalTime = 0;
-    width = document.querySelector(settings.container).getBoundingClientRect()
-      .width;
-    height = document.querySelector(settings.container).getBoundingClientRect()
-      .height;
+    width = newWidth;
+    height = newHeight;
     lastUpdate = false;
     play();
   }, 250);

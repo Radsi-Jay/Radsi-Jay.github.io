@@ -13,6 +13,7 @@ function generateWaveDivider(svgID, waveCount, amplitude, color1, color2, alpha1
         let alpha = alpha1 * (1.0 - interp) + alpha2 * interp;
 
         let newWave = wavify( newPath, {
+            container: svgID,
             height: waveHeight,
             bones: 3 + Math.round(Math.random() * 5),
             amplitude: amplitude * (1-i/waveCount),

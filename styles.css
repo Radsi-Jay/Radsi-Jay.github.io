@@ -531,10 +531,6 @@ Ensure the default browser behavior of the `hidden` attribute.
   aspect-ratio: 1 / 1;
 }
 
-.h-screen {
-  height: 100vh;
-}
-
 .h-20 {
   height: 5rem;
 }
@@ -582,12 +578,12 @@ Ensure the default browser behavior of the `hidden` attribute.
   padding: 1rem;
 }
 
-.p-1 {
-  padding: 0.25rem;
-}
-
 .p-8 {
   padding: 2rem;
+}
+
+.p-1 {
+  padding: 0.25rem;
 }
 
 .px-4 {
@@ -633,6 +629,12 @@ Ensure the default browser behavior of the `hidden` attribute.
   overflow: hidden;
 }
 
+.h-screen-mobile-fix {
+  height: 100vh;
+  /* Fallback for browsers that do not support Custom Properties */
+  height: calc(100vh - var(--vh-offset, 0px));
+}
+
 .waves-teal {
   background-image: url('/src/resources/waves-teal.svg');
 }
@@ -649,11 +651,6 @@ Ensure the default browser behavior of the `hidden` attribute.
 @media (min-width: 1024px) {
   .lg\:text-9xl {
     font-size: 8rem;
-    line-height: 1;
-  }
-
-  .lg\:text-6xl {
-    font-size: 3.75rem;
     line-height: 1;
   }
 
