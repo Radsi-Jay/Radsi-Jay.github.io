@@ -1,0 +1,68 @@
+[
+    {
+      "texture": "/src/resources/background-icons/unity.png",
+      "scale": 0.3,
+      "count": 1,
+      "radius": 40
+    },
+    {
+      "texture": "/src/resources/background-icons/star.png",
+      "scale": 0.15,
+      "count": 0,
+      "radius": 20
+    },
+    {
+      "texture": "/src/resources/background-icons/blender.png",
+      "scale": 0.3,
+      "count": 1,
+      "radius": 40
+    },
+    {
+      "texture": "/src/resources/background-icons/csharp.png",
+      "scale": 0.24,
+      "count": 1,
+      "radius": 40
+    },
+    {
+      "texture": "/src/resources/background-icons/java.png",
+      "scale": 0.3,
+      "count": 1,
+      "radius": 40
+    },
+    {
+      "texture": "/src/resources/background-icons/fracturegon.png",
+      "scale": 0.15,
+      "count": 1,
+      "radius": 40
+    },
+    {
+      "texture": "/src/resources/background-icons/bifrost-blitz.png",
+      "scale": 0.25,
+      "count": 1,
+      "radius": 40
+    },
+    {
+      "texture": "/src/resources/background-icons/duck-duality.png",
+      "scale": 0.3,
+      "count": 1,
+      "radius": 40
+    },
+    {
+      "texture": "/src/resources/background-icons/pacstudent.png",
+      "scale": 0.15,
+      "count": 1,
+      "radius": 40
+    },
+    {
+      "texture": "/src/resources/background-icons/prismorph.png",
+      "scale": 0.6,
+      "count": 1,
+      "radius": 40
+    },
+    {
+      "texture": "/src/resources/background-icons/python.png",
+      "scale": 0.3,
+      "count": 1,
+      "radius": 40
+    }
+  ]

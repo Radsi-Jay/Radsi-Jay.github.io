@@ -498,8 +498,8 @@ Ensure the default browser behavior of the `hidden` attribute.
   position: relative;
 }
 
-.bottom-10 {
-  bottom: 2.5rem;
+.bottom-1 {
+  bottom: 0.25rem;
 }
 
 .bottom-0 {
@@ -531,8 +531,16 @@ Ensure the default browser behavior of the `hidden` attribute.
   aspect-ratio: 1 / 1;
 }
 
+.h-\[90vh\] {
+  height: 90vh;
+}
+
 .h-20 {
   height: 5rem;
+}
+
+.h-screen {
+  height: 100vh;
 }
 
 .w-full {
@@ -624,15 +632,13 @@ Ensure the default browser behavior of the `hidden` attribute.
   transition-duration: 500ms;
 }
 
+.duration-200 {
+  transition-duration: 200ms;
+}
+
 .divider {
   width: 100%;
   overflow: hidden;
-}
-
-.h-screen-mobile-fix {
-  height: 100vh;
-  /* Fallback for browsers that do not support Custom Properties */
-  height: calc(100vh - var(--vh-offset, 0px));
 }
 
 .waves-teal {
@@ -643,9 +649,35 @@ Ensure the default browser behavior of the `hidden` attribute.
   bottom: 2.75rem;
 }
 
+.hover\:bottom-1:hover {
+  bottom: 0.25rem;
+}
+
+.hover\:bottom-2:hover {
+  bottom: 0.5rem;
+}
+
 .hover\:bg-teal-600:hover {
   --tw-bg-opacity: 1;
   background-color: rgb(13 148 136 / var(--tw-bg-opacity));
+}
+
+.hover\:bg-teal-700:hover {
+  --tw-bg-opacity: 1;
+  background-color: rgb(15 118 110 / var(--tw-bg-opacity));
+}
+
+@media (min-width: 640px) {
+  .sm\:h-screen {
+    height: 100vh;
+  }
+}
+
+@media (min-width: 768px) {
+  .md\:text-8xl {
+    font-size: 6rem;
+    line-height: 1;
+  }
 }
 
 @media (min-width: 1024px) {
