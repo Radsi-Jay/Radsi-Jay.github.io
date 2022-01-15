@@ -2,67 +2,81 @@
     {
       "texture": "/src/resources/background-icons/unity.png",
       "scale": 0.3,
-      "count": 1,
-      "radius": 40
-    },
-    {
-      "texture": "/src/resources/background-icons/star.png",
-      "scale": 0.15,
-      "count": 0,
-      "radius": 20
+      "radius": 40,
+      "contentID": "unity", 
+      "title": "Unity",
+      "subtitle": "Software"
     },
     {
       "texture": "/src/resources/background-icons/blender.png",
       "scale": 0.3,
-      "count": 1,
-      "radius": 40
+      "radius": 40,
+      "contentID": "blender", 
+      "title": "Blender",
+      "subtitle": "Software"
     },
     {
       "texture": "/src/resources/background-icons/csharp.png",
       "scale": 0.24,
-      "count": 1,
-      "radius": 40
+      "radius": 40,
+      "contentID": "csharp", 
+      "title": "C#",
+      "subtitle": "Programming Language"
     },
     {
       "texture": "/src/resources/background-icons/java.png",
       "scale": 0.3,
-      "count": 1,
-      "radius": 40
+      "radius": 40,
+      "contentID": "java", 
+      "title": "Java",
+      "subtitle": "Programming Language"
     },
     {
       "texture": "/src/resources/background-icons/fracturegon.png",
       "scale": 0.15,
-      "count": 1,
-      "radius": 40
+      "radius": 40,
+      "contentID": "fracturegon", 
+      "title": "Fracturegon",
+      "subtitle": "Game"
     },
     {
       "texture": "/src/resources/background-icons/bifrost-blitz.png",
       "scale": 0.25,
-      "count": 1,
-      "radius": 40
+      "radius": 40,
+      "contentID": "bifrost-blitz", 
+      "title": "Bifrost Blitz",
+      "subtitle": "Game"
     },
     {
       "texture": "/src/resources/background-icons/duck-duality.png",
       "scale": 0.3,
-      "count": 1,
-      "radius": 40
+      "radius": 40,
+      "contentID": "duck-duality", 
+      "title": "Duck Duality",
+      "subtitle": "Game"
     },
     {
       "texture": "/src/resources/background-icons/pacstudent.png",
       "scale": 0.15,
-      "count": 1,
-      "radius": 40
+      "radius": 40,
+      "contentID": "pacstudent", 
+      "title": "PacStudent: Ocular Onslaught",
+      "subtitle": "Game"
     },
     {
       "texture": "/src/resources/background-icons/prismorph.png",
       "scale": 0.6,
-      "count": 1,
-      "radius": 40
+      "radius": 40,
+      "contentID": "prismorph", 
+      "title": "Prismorph",
+      "subtitle": "Game"
     },
     {
       "texture": "/src/resources/background-icons/python.png",
       "scale": 0.3,
-      "count": 1,
-      "radius": 40
+      "radius": 40,
+      "contentID": "python", 
+      "title": "Python",
+      "subtitle": "Programming Language"
     }
   ]

@@ -16,24 +16,140 @@
     <script src="/src/js/icon-background.js"></script> -->
 </head>
 <body class="bg-gray-900">
-    <div class="sm:h-screen h-[90vh] mx-0 px-4 w-full flex items-center justify-center text-white text text-5xl md:text-8xl lg:text-9xl relative">
-        <div class="absolute w-full sm:h-screen h-[90vh]" id="icon-background"></div>
+    <div class="sm:h-[95vh] h-[90vh] mx-0 px-4 w-full flex items-center justify-center text-white text text-5xl md:text-8xl lg:text-9xl relative">
+        <div class="absolute w-full h-full" id="icon-background"></div>
         <p class="text-center z-10 pointer-events-none" style="text-shadow: 5px 5px 10px #000000;" id="name">***REMOVED*** Barton</p>
-        <a href="#section-2" class="z-10 absolute bottom-1 hover:bottom-2 bg-teal-800 h-20 aspect-square p-4 rounded shadow-2xl hover:bg-teal-700 duration-200">
+        <!-- <a href="#section-2" class="z-10 absolute bottom-1 hover:bottom-2 bg-teal-800 h-20 aspect-square p-4 rounded shadow-2xl hover:bg-teal-700 duration-200">
             <img class="z-10" src="/src/resources/down-arrow.svg"></svg>
-        </a>
-        <svg class="absolute bottom-0 pointer-events-none" width="100%" height="150px" version="1.1" xmlns="http://www.w3.org/2000/svg" id="divider1"><defs></defs></svg>
+        </a> -->
+        <div class="absolute flex items-center bottom-[30px] z-10 pointer-events-none">
+            <a class=" h-[60px] aspect-square hover:-translate-x-2 duration-200 pointer-events-auto" id="selectIconPrev">
+                <img class="z-10 rotate-90" src="/src/resources/down-arrow.svg"></svg>
+            </a>
+            <div class="w-[140px] h-0"></div>
+            <a class=" h-[60px] aspect-square hover:translate-x-2 duration-200 pointer-events-auto" id="selectIconNext">
+                <img class="z-10 -rotate-90" src="/src/resources/down-arrow.svg"></svg>
+            </a>
+        </div>
+        <svg class="absolute bottom-0 pointer-events-none" width="100%" height="150px" version="1.1" xmlns="http://www.w3.org/2000/svg" id="divider1"><defs></defs>
+            <g id="waves1"></g>
+            <mask id="wavesMask">
+                <rect id="bg" x="0" y="0" width="100%" height="100%" fill="white"/>
+                <g transform="translate(0, 0)" class="wavesMaskGroup">
+                    <circle cx="0" cy="0" r="60"/>
+                </g>
+            </mask>
+            <g transform="translate(0, 0)" class="wavesMaskGroup">
+                <path d="M 70 0 A 70 70 0 0 1 0 70 A 70 70 0 0 1 -70 0 A 70 70 0 0 1 0 -70 A 70 70 0 0 1 70 0 Z" style="fill: none; stroke: rgb(17, 94, 89); stroke-width: 20px;" bx:origin="-0.675585 -1.311441"/>
+            </g>
+        </svg>
     </div>
-    <div class="h-screen w-full flex items-center justify-center text-center bg-teal-800 text-white relative text-3xl lg:text-5xl p-8" id="section-2">
-        <p class="">Hi, welcome to the wonderful world of ***REMOVED***</p>
+    <div class="min-h-[50vh] w-full text-center bg-teal-800 p-8" id="section-2">
+        <h1 class="text-white relative text-3xl lg:text-5xl m-2" id="iconName">Click the arrows above,</h1>
+        <h2 class="text-gray-300 relative text-2xl lg:text-4xl" id="subtitle">or drag an icon in!</h2>
+        <div class="content-section">
+            <div id="content-default" class="content-section content-collapse">
+                <div class="container grid grid-cols-1 max-w-[20rem] w-full mx-auto py-8">
+                    <p class="text-white relative text-xl lg:text-2xl text-center m-4">
+                        Seriously though, you should try pressing one of those two arrow buttons above, or try dragging an icon around!<br/>
+                        I promise it's a lot of fun!<br/>
+                        (I may have gotten a bit carried away with the physics :D)
+                    </p>
+                </div>
+            </div>
+            <div id="content-missing" class="content-section content-collapse">
+                <div class="container grid grid-cols-1 max-w-[70rem] w-full mx-auto py-8">
+                    <p class="text-white relative text-xl lg:text-2xl text-center m-4">
+                        Looks like ***REMOVED*** messed up or forgot to write content for this section!
+                    </p>
+                </div>
+            </div>
+            <div id="content-unity" class="content-section content-collapse">
+                <div class="container grid grid-cols-1 md:grid-cols-1 max-w-[70rem] w-full mx-auto py-8">
+                    <p class="text-white relative text-xl lg:text-2xl text-center m-4">
+                        This will have all the content for Unity!
+                    </p>
+                </div>
+            </div>
+            <div id="content-blender" class="content-section content-collapse">
+                <div class="container grid grid-cols-1 md:grid-cols-1 max-w-[70rem] w-full mx-auto py-8">
+                    <p class="text-white relative text-xl lg:text-2xl text-center m-4">
+                        This will have all the content for Blender!
+                    </p>
+                </div>
+            </div>
+            <div id="content-csharp" class="content-section content-collapse">
+                <div class="container grid grid-cols-1 md:grid-cols-1 max-w-[70rem] w-full mx-auto py-8">
+                    <p class="text-white relative text-xl lg:text-2xl text-center m-4">
+                        This will have all the content for C#!
+                    </p>
+                </div>
+            </div>
+            <div id="content-java" class="content-section content-collapse">
+                <div class="container grid grid-cols-1 md:grid-cols-1 max-w-[70rem] w-full mx-auto py-8">
+                    <p class="text-white relative text-xl lg:text-2xl text-center m-4">
+                        This will have all the content for Java!
+                    </p>
+                </div>
+            </div>
+            <div id="content-fracturegon" class="content-section content-collapse">
+                <div class="container grid grid-cols-1 md:grid-cols-1 max-w-[70rem] w-full mx-auto py-8">
+                    <p class="text-white relative text-xl lg:text-2xl text-center m-4">
+                        This will have all the content for Fracturegon!
+                    </p>
+                </div>
+            </div>
+            <div id="content-bifrost-blitz" class="content-section content-collapse">
+                <div class="container grid grid-cols-1 md:grid-cols-1 max-w-[70rem] w-full mx-auto py-8">
+                    <p class="text-white relative text-xl lg:text-2xl text-center m-4">
+                        This will have all the content for Bifrost Blitz!
+                    </p>
+                </div>
+            </div>
+            <div id="content-duck-duality" class="content-section content-collapse">
+                <div class="container grid grid-cols-1 md:grid-cols-1 max-w-[70rem] w-full mx-auto py-8">
+                    <p class="text-white relative text-xl lg:text-2xl text-center m-4">
+                        This will have all the content for Duck Duality!
+                    </p>
+                </div>
+            </div>
+            <div id="content-pacstudent" class="content-section content-collapse">
+                <div class="container grid grid-cols-1 md:grid-cols-1 max-w-[70rem] w-full mx-auto py-8">
+                    <p class="text-white relative text-xl lg:text-2xl text-center m-4">
+                        This will have all the content for Ocular Onslaught, my wonderful version of Pacman!
+                    </p>
+                </div>
+            </div>
+            <div id="content-prismorph" class="content-section content-collapse">
+                <div class="container grid grid-cols-1 md:grid-cols-1 max-w-[70rem] w-full mx-auto py-8">
+                    <p class="text-white relative text-xl lg:text-2xl text-center m-4">
+                        This will have all the content for Prismorph!
+                    </p>
+                </div>
+            </div>
+            <div id="content-python" class="content-section content-collapse">
+                <div class="container grid grid-cols-1 md:grid-cols-2 max-w-[70rem] w-full mx-auto py-8">
+                    <p class="text-white relative text-xl lg:text-2xl text-justify m-4">
+                        This will have all the stuff for Python, also has some random testing stuff at the moment lol.
+                    </p>
+                    <iframe class="embed-youtube" src="https://www.youtube.com/embed/QnonOiDRkWQ" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                    <iframe class="embed-youtube" src="https://www.youtube.com/embed/QnonOiDRkWQ" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                    <p class="text-white relative text-xl lg:text-2xl text-justify m-4">Lorem ipsum et dollarydoo Lorem ipsum et dollarydoo Lorem ipsum et dollarydoo Lorem ipsum et dollarydoo Lorem ipsum et dollarydoo
+                        Lorem ipsum et dollarydoo Lorem ipsum et dollarydoo Lorem ipsum et dollarydoo Lorem ipsum et dollarydoo Lorem ipsum et dollarydoo
+                        Lorem ipsum et dollarydoo Lorem ipsum et dollarydoo Lorem ipsum et dollarydoo Lorem ipsum et dollarydoo Lorem ipsum et dollarydoo
+                        Lorem ipsum et dollarydooLorem ipsum et dollarydoo Lorem ipsum et dollarydoo Lorem ipsum et dollarydoo Lorem ipsum et dollarydoo
+                    </p>
+                </div>
+            </div>
+        </div>
     </div>
     <svg class="bg-gray-900 rotate-180" width="100%" height="500px" version="1.1" xmlns="http://www.w3.org/2000/svg" id="divider2"><defs></defs></svg>
     <div class="h-screen w-full flex items-center justify-center text-center bg-gray-900 text-white relative text-3xl lg:text-5xl p-8" id="section-3">
         <p class="">If you couldn't tell, this is still a work in progress! Look forwards to more cool stuff soon!!</p>
     </div>
     <script>
-        GenerateWaves("#divider1", 4, 80, [45, 212, 191], [17, 94, 89], 1, 1); // [19, 78, 74]
-        GenerateWaves("#divider2", 15, 180, [45, 212, 191], [17, 94, 89], 1, 1); // [192, 132, 252], [88, 28, 135],
+        GenerateWaves("#divider1", 4, 80, [45, 212, 191], [17, 94, 89], 1, 1, "#waves1", "#wavesMask"); // [19, 78, 74]
+        GenerateWaves("#divider2", 15, 180, [45, 212, 191], [17, 94, 89], 1, 1, "#divider2", "none"); // [192, 132, 252], [88, 28, 135],
     </script>
 </body>
 </html>
