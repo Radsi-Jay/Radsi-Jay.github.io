@@ -1,0 +1,42 @@
+<html>
+  <head>
+    <title>Boids</title>
+  </head>
+
+  <style>
+  body {margin: 0;}
+  canvas {width: 100%; height: 100%;}
+  </style>
+
+  <body>
+    <!--include the three.js library-->
+    <script src="js/three.js"> </script>
+    <script src="js/OrbitControls.js"> </script>
+    <script type="text/javascript" src="js/dat.gui.min.js"></script>
+    <script type="text/javascript" src="https://www.w3schools.com/lib/w3color.js"></script>
+    
+    <style>
+    			body {
+    				font-family: Monospace;
+    				background-color: #000;
+    				color: #fff;
+    				margin: 0px;
+    				overflow: hidden;
+    			}
+    			#info {
+    				position: absolute;
+    				top: 10px;
+    				width: 100%;
+    				text-align: center;
+    			}
+    </style>
+
+    <div id="info">
+      <p>This is a parametric 3D modification of the boids algorithm<br>
+        Orbit - left mouse / touch: one-finger move<br>
+        Zoom - middle mouse, or mousewheel / touch: two-finger spread or squish<br>
+        Pan - right mouse, or left mouse + ctrl/meta/shiftKey, or arrow keys / touch: two-finger move</p>
+    </div>
+    <script src="js/boids.js"> </script>
+  </body>
+</html>
