@@ -1,11 +1,45 @@
+<!--If you are looking at this code, I wrote half of it when I was awake, 
+  and the other half when I couldn't be bothered with good practice lol.
+  So the boids script is alright, but the ui fading and stuff is a complete mess,
+  and the afterimage setting is a bit wack too.
+  Anyhow, I hope it's not too disgusting to read!
+  Radsi - 17/03/2022
+-->
 <html>
   <head>
     <title>Boids</title>
   </head>
 
   <style>
-  body {margin: 0;}
-  canvas {width: 100%; height: 100%;}
+    body {margin: 0;}
+    canvas {width: 100%; height: 100%;}
+    .lilBtn {
+      background-color: transparent;
+      background-repeat: no-repeat;
+      border: none;
+      cursor: pointer;
+      overflow: hidden;
+      outline: none;
+      width: 2rem;
+      height: 2rem;
+      color: white;
+      font-size: 1.5rem;
+    }
+    #lowerButtons {
+      position: fixed;
+      flex-direction: row;
+      transition: opacity 1s ease-out;
+      bottom: 1rem;
+      right: 1rem;
+    }
+    #info {
+      transition: opacity 0.3s ease-out;
+    }
+
+    .inactive {
+      opacity: 0;
+      pointer-events: none;
+    }
   </style>
 
   <body>
@@ -13,6 +47,7 @@
     <script src="js/three.js"> </script>
     <script src="js/OrbitControls.js"> </script>
     <script type="text/javascript" src="js/dat.gui.min.js"></script>
+    <script type="text/javascript" src="js/fullscreen.js"></script>
     <script type="text/javascript" src="https://www.w3schools.com/lib/w3color.js"></script>
     
     <style>
@@ -31,12 +66,71 @@
     			}
     </style>
 
-    <div id="info">
-      <p>This is a parametric 3D modification of the boids algorithm<br>
-        Orbit - left mouse / touch: one-finger move<br>
-        Zoom - middle mouse, or mousewheel / touch: two-finger spread or squish<br>
-        Pan - right mouse, or left mouse + ctrl/meta/shiftKey, or arrow keys / touch: two-finger move</p>
+    <div id="gui">
+      <div id="info">
+        <p>This is a 3D implementation of the boids algorithm! Play about with the parameters on the right!<br>
+          I added hue-averaging so that distinct groups will get distinct colours!<br>
+          Orbit with left mouse/drag, zoom with scroll/pinch and pan with right mouse/2 fingers.<br>
+          You can hide this text by pressing the question mark in the bottom right.
+        </p>
+      </div>
+      <div id="lowerButtons">
+        <button onclick="toggleInfo()" id="infoBtn" class="lilBtn">
+          ?
+        </button>
+        <button onclick="toggleFullscreen()" id="fullscreenBtn" class="lilBtn">
+          ⛶
+        </button>
+      </div>
     </div>
     <script src="js/boids.js"> </script>
+    <!--Idle hider-->
+    <script> 
+      let idleTimer = null;
+      let idleState = false;
+      let infoShown = true;
+
+      let lowerButtons = document.getElementById('lowerButtons');
+      let info = document.getElementById('info');
+      let canvas = document.getElementsByTagName('canvas')[0];
+      let closeBtn = document.getElementsByClassName('close-button')[0];
+
+      closeBtn.style.transition = "opacity 1s ease-out";
+
+      function toggleInfo() {
+        if (infoShown) {
+          info.classList.add("inactive");
+        } else {
+          info.classList.remove("inactive");
+        }
+        infoShown = !infoShown;
+      }
+
+      function showGui(time) {
+        clearTimeout(idleTimer);
+        if (idleState == true) {
+          lowerButtons.classList.remove("inactive");
+          closeBtn.classList.remove("inactive");
+          document.body.style.cursor = "default";
+        }
+        idleState = false;
+        idleTimer = setTimeout(function() {
+          lowerButtons.classList.add("inactive");
+          closeBtn.classList.add("inactive");
+          document.body.style.cursor = "none";
+          idleState = true;
+        }, time);
+      }
+
+      showGui(2000);
+
+      window.onmousemove = function(){
+          showGui(2000);
+      };
+
+      canvas.ontouchmove = function(){
+          showGui(2000);
+      };
+    </script>
   </body>
 </html>

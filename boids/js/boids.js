@@ -1,26 +1,32 @@
 let scene, camera, renderer;
+let fadeMaterial, fadeMesh, fadeObject, fadeScene, fadeCam;
 let controls;
 
 // Adjustable parameters
 let params = {
     pauseSim: false,
-    showBounds: true,
+    showBounds: false,
     radius: 500,
     boundsFactor: 1,
     matchingFactor: 0.05,
     centeringFactor: 0.005,
     avoidFactor: 0.05,
-    minDistance: 20,
-    sightDist: 80,
+    minDistance: 30,
+    sightDist: 100,
     speed: 5,
     maxAccelleration: 0.5,
     numBoids: 1000,
-    boidLength: 5,
-    boidWidth: 2
+    boidLength: 8,
+    boidWidth: 3,
+    afterimageEffect: true,
+    afterimageAmount: 0.7
 }
 
 let prevLength = 1;
 let prevWidth = 1;
+let prevAfterimageEffect = !params.afterimageEffect;
+let prevAfterimageAmount = -1;
+
 
 let helperSphere;
 let helperBox;
@@ -236,7 +242,7 @@ function combinedBrain(boid) {
             }
         }
 
-        boid.queuedHue = mod((nearHueAvg + wrapNum + boid.hue) / 2 + pos.x * 3 / params.radius, 360);
+        boid.queuedHue = mod((nearHueAvg + wrapNum + boid.hue) / 2 + Math.min(Math.max(pos.x * 3 / params.radius, -3), 3), 360);
     }
 
     // Avoid others
@@ -293,29 +299,31 @@ class Boid {
 function initGUI() {
     const gui = new dat.gui.GUI();
     const generalFolder = gui.addFolder('General');
-    generalFolder.add(params, 'pauseSim');
-    generalFolder.add(params, 'showBounds');
+    generalFolder.add(params, 'pauseSim').name("Pause Simulation");
+    generalFolder.add(params, 'showBounds').name("Show Bounds");
     generalFolder.open();
 
     const worldFolder = gui.addFolder('World');
-    worldFolder.add(params, 'radius', 0, 2000);
-    worldFolder.add(params, 'numBoids', 0, 5000);
+    worldFolder.add(params, 'radius', 1, 2000).name("Bounds Radius");
+    worldFolder.add(params, 'numBoids', 0, 5000).name("Number of Boids");
     worldFolder.open();
 
     const boidBrainFolder = gui.addFolder('Boid Brain');
-    boidBrainFolder.add(params, 'boundsFactor', 0, 1);
-    boidBrainFolder.add(params, 'matchingFactor', 0, 1);
-    boidBrainFolder.add(params, 'centeringFactor', 0, 1);
-    boidBrainFolder.add(params, 'avoidFactor', 0, 1);
-    boidBrainFolder.add(params, 'minDistance', 0, 200);
-    boidBrainFolder.add(params, 'speed', 0, 30);
-    boidBrainFolder.add(params, 'maxAccelleration', 0, 5);
-    boidBrainFolder.add(params, 'sightDist', 0, 1000);
+    boidBrainFolder.add(params, 'boundsFactor', 0, 1).name("Bounds Factor");
+    boidBrainFolder.add(params, 'avoidFactor', 0, 1).name("Separation");
+    boidBrainFolder.add(params, 'matchingFactor', 0, 1).name("Alignment");
+    boidBrainFolder.add(params, 'centeringFactor', 0, 1).name("Cohesion");
+    boidBrainFolder.add(params, 'minDistance', 0, 200).name("Separation Dist");
+    boidBrainFolder.add(params, 'speed', 0, 30).name("Speed");
+    boidBrainFolder.add(params, 'maxAccelleration', 0, 5).name("Accelleration");
+    boidBrainFolder.add(params, 'sightDist', 0, 1000).name("Vision Radius");
     boidBrainFolder.open();
 
     const boidVisualsFolder = gui.addFolder('Boid Visuals');
-    boidVisualsFolder.add(params, 'boidWidth', 0.2, 30);
-    boidVisualsFolder.add(params, 'boidLength', 0.2, 30);
+    boidVisualsFolder.add(params, 'boidWidth', 0.2, 30).name("Boid Width");
+    boidVisualsFolder.add(params, 'boidLength', 0.2, 30).name("Boid Height");
+    boidVisualsFolder.add(params, 'afterimageEffect').name("Enable Afterimage");
+    boidVisualsFolder.add(params, 'afterimageAmount', 0, 1).name("Afterimage Strength");
     boidVisualsFolder.open();
 }
 
@@ -325,12 +333,12 @@ function init()
 
     scene = new THREE.Scene( );
     let ratio = window.innerWidth/window.innerHeight;
-    camera = new THREE.PerspectiveCamera(45,ratio,0.1,10000);
+    camera = new THREE.PerspectiveCamera(45,ratio,0.1,100000);
 
     camera.position.set(0,0,params.radius*4);
     camera.lookAt(0,0,1);
 
-    renderer = new THREE.WebGLRenderer( );
+    renderer = new THREE.WebGLRenderer( { preserveDrawingBuffer: true } );
 
     renderer.setSize(window.innerWidth,window.innerHeight);
     document.body.appendChild(renderer.domElement );
@@ -349,6 +357,32 @@ function init()
     helperSphere = new THREE.Mesh( sphere, new THREE.MeshBasicMaterial( 0xff0000 ) );
     helperBox = new THREE.BoxHelper( helperSphere, 0x888800 );
     scene.add( helperBox );
+
+    // Afterimage effect
+    fadeScene = new THREE.Scene( );
+    fadeCam = new THREE.PerspectiveCamera(45,ratio,0.1,100000);
+
+    // Afterimage fade plane (https://discourse.threejs.org/t/trails-background-image/17673)
+    fadeMaterial = new THREE.MeshBasicMaterial ( {
+        color : 0x000000,
+        transparent : true,
+        opacity : 0.5,			
+        depthTest : false 
+    });
+
+    fadeMesh = new THREE.Mesh ( 
+        new THREE.PlaneBufferGeometry ( 100 , 100 ) , 
+        fadeMaterial 
+    );
+
+    fadeObject = fadeScene.add(fadeMesh);
+
+    // Move afterimage plane
+    let worldDir = new THREE.Vector3 ( ) ;
+    fadeCam.getWorldDirection ( worldDir ) ;
+    
+    fadeMesh.position.addVectors ( fadeCam.position , worldDir) ;  	
+    fadeMesh.rotation.copy ( fadeCam.rotation ) ;
 }
 
 init();
@@ -401,8 +435,26 @@ var UpdateLoop = function ( )
         prevLength = params.boidLength;
     }
 
+    // Toggle after image effect
+    if (params.afterimageEffect !== prevAfterimageEffect) {
+        renderer.autoClearColor = !params.afterimageEffect;
+        prevAfterimageEffect = params.afterimageEffect;
+    }
+    if (!params.afterimageEffect) {
+        renderer.clearColor();
+    } else {
+        renderer.render(fadeScene,fadeCam);
+    }
+
+    // Update afterimage material
+    if (prevAfterimageAmount !== params.afterimageAmount) {
+        fadeMaterial.opacity = (1 - params.afterimageAmount) / 2;
+        prevAfterimageAmount = params.afterimageAmount;
+    }
+
     renderer.render(scene,camera);
 
+    // Update orbit controls
     controls.update();
 
     requestAnimationFrame(UpdateLoop);
