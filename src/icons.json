@@ -5,55 +5,15 @@
       "radius": 40,
       "contentID": "unity", 
       "title": "Unity",
-      "subtitle": "Software"
+      "category": "Software"
     },
     {
-      "texture": "/src/resources/background-icons/blender.png",
-      "scale": 0.3,
-      "radius": 40,
-      "contentID": "blender", 
-      "title": "Blender",
-      "subtitle": "Software"
-    },
-    {
-      "texture": "/src/resources/background-icons/csharp.png",
-      "scale": 0.24,
-      "radius": 40,
-      "contentID": "csharp", 
-      "title": "C#",
-      "subtitle": "Programming Language"
-    },
-    {
-      "texture": "/src/resources/background-icons/java.png",
-      "scale": 0.3,
-      "radius": 40,
-      "contentID": "java", 
-      "title": "Java",
-      "subtitle": "Programming Language"
-    },
-    {
-      "texture": "/src/resources/background-icons/fracturegon.png",
-      "scale": 0.15,
-      "radius": 40,
-      "contentID": "fracturegon", 
-      "title": "Fracturegon",
-      "subtitle": "Game"
-    },
-    {
-      "texture": "/src/resources/background-icons/bifrost-blitz.png",
+      "texture": "/src/resources/background-icons/clockwork-conundrum.png",
       "scale": 0.25,
       "radius": 40,
-      "contentID": "bifrost-blitz", 
-      "title": "Bifrost Blitz",
-      "subtitle": "Game"
-    },
-    {
-      "texture": "/src/resources/background-icons/duck-duality.png",
-      "scale": 0.3,
-      "radius": 40,
-      "contentID": "duck-duality", 
-      "title": "Duck Duality",
-      "subtitle": "Game"
+      "contentID": "clockwork-conundrum", 
+      "title": "Clockwork Conundrum",
+      "category": "Game"
     },
     {
       "texture": "/src/resources/background-icons/pacstudent.png",
@@ -61,7 +21,15 @@
       "radius": 40,
       "contentID": "pacstudent", 
       "title": "PacStudent: Ocular Onslaught",
-      "subtitle": "Game"
+      "category": "Game"
+    },
+    {
+      "texture": "/src/resources/background-icons/duck-duality.png",
+      "scale": 0.3,
+      "radius": 40,
+      "contentID": "duck-duality", 
+      "title": "Duck Duality",
+      "category": "Game"
     },
     {
       "texture": "/src/resources/background-icons/prismorph.png",
@@ -69,14 +37,30 @@
       "radius": 40,
       "contentID": "prismorph", 
       "title": "Prismorph",
-      "subtitle": "Game"
+      "category": "Game"
     },
     {
-      "texture": "/src/resources/background-icons/python.png",
+      "texture": "/src/resources/background-icons/bifrost-blitz.png",
+      "scale": 0.25,
+      "radius": 40,
+      "contentID": "bifrost-blitz", 
+      "title": "Bifrost Blitz",
+      "category": "Game"
+    },
+    {
+      "texture": "/src/resources/background-icons/fracturegon.png",
+      "scale": 0.15,
+      "radius": 40,
+      "contentID": "fracturegon", 
+      "title": "Fracturegon",
+      "category": "Game"
+    },
+    {
+      "texture": "/src/resources/background-icons/blender.png",
       "scale": 0.3,
       "radius": 40,
-      "contentID": "python", 
-      "title": "Python",
-      "subtitle": "Programming Language"
+      "contentID": "blender", 
+      "title": "Blender",
+      "category": "Software"
     }
   ]
