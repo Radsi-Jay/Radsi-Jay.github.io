@@ -62,5 +62,13 @@
       "contentID": "blender", 
       "title": "Blender",
       "category": "Software"
+    },
+    {
+      "texture": "/src/resources/background-icons/threejs.png",
+      "scale": 0.3,
+      "radius": 30,
+      "contentID": "threejs", 
+      "title": "Three.js",
+      "category": "Library"
     }
   ]
