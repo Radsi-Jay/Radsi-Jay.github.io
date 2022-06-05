@@ -271,27 +271,27 @@ async function init() {
 
     const loadPromises2 = [];
 
-    loadPromises2.push(loadTexture('../images/rocks.jpg').then(result => {
+    loadPromises2.push(loadTexture('./images/rocks.jpg').then(result => {
         rockTex = result;
     }));
 
-    loadPromises2.push(loadTexture('../images/rock-normal.jpg').then(result => {
+    loadPromises2.push(loadTexture('./images/rock-normal.jpg').then(result => {
         rockNorm = result;
     }));
 
-    loadPromises2.push(loadTexture('../images/rockTex2.jpg').then(result => {
+    loadPromises2.push(loadTexture('./images/rockTex2.jpg').then(result => {
         rockTex2 = result;
     }));
 
-    loadPromises2.push(loadTexture('../images/rockNorm2.jpg').then(result => {
+    loadPromises2.push(loadTexture('./images/rockNorm2.jpg').then(result => {
         rockNorm2 = result;
     }));
 
-    loadPromises2.push(loadTexture('../images/gemNormal.jpg').then(result => {
+    loadPromises2.push(loadTexture('./images/gemNormal.jpg').then(result => {
         gemNorm = result;
     }));
 
-    loadPromises2.push(loadTexture('../images/gemRough.jpg').then(result => {
+    loadPromises2.push(loadTexture('./images/gemRough.jpg').then(result => {
         gemRough = result;
     }));
 
@@ -326,7 +326,7 @@ async function init() {
     const loadPromises = [];
 
     let oreModel;
-    loadPromises.push(loadModel('../models/OreNode2.obj').then(result => {
+    loadPromises.push(loadModel('./models/OreNode2.obj').then(result => {
         oreModel = result;
         
         oreModel.traverse( function( child ) {
@@ -343,39 +343,39 @@ async function init() {
 
     camera.add( listener );
 
-    loadPromises.push(loadAudio('../audio/gemHum.mp3').then(result => {
+    loadPromises.push(loadAudio('./audio/gemHum.mp3').then(result => {
         sounds.gemHum = result;
     }));
 
-    loadPromises.push(loadAudio('../audio/mineralHit.wav').then(result => {
+    loadPromises.push(loadAudio('./audio/mineralHit.wav').then(result => {
         sounds.mineralHit = result;
     }));
 
-    loadPromises.push(loadAudio('../audio/mineralBreak.wav').then(result => {
+    loadPromises.push(loadAudio('./audio/mineralBreak.wav').then(result => {
         sounds.mineralBreak = result;
     }));
 
-    loadPromises.push(loadAudio('../audio/wallHit.mp3').then(result => {
+    loadPromises.push(loadAudio('./audio/wallHit.mp3').then(result => {
         sounds.wallHit = result;
     }));
 
-    loadPromises.push(loadAudio('../audio/orbLaunch.wav').then(result => {
+    loadPromises.push(loadAudio('./audio/orbLaunch.wav').then(result => {
         sounds.orbLaunch = result;
     }));
 
-    loadPromises.push(loadAudio('../audio/orbHum.wav').then(result => {
+    loadPromises.push(loadAudio('./audio/orbHum.wav').then(result => {
         sounds.orbHum = result;
     }));
 
-    loadPromises.push(loadAudio('../audio/ambience.mp3').then(result => {
+    loadPromises.push(loadAudio('./audio/ambience.mp3').then(result => {
         sounds.ambience = result;
     }));
 
-    loadPromises.push(loadAudio('../audio/wind.mp3').then(result => {
+    loadPromises.push(loadAudio('./audio/wind.mp3').then(result => {
         sounds.wind = result;
     }));
 
-    loadPromises.push(loadAudio('../audio/wallSlide.mp3').then(result => {
+    loadPromises.push(loadAudio('./audio/wallSlide.mp3').then(result => {
         sounds.wallSlide = result;
     }));
 
