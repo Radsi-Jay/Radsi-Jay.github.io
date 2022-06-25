@@ -6,17 +6,56 @@
     <meta name="viewport" content="user-scalable=no, width=device-width, initial-scale=1.0">
     <meta name="apple-mobile-web-app-capable" content="yes" />
     <title>***REMOVED*** Barton</title>
-    <link rel="stylesheet" href="/styles.css?v=0.0.2">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.9.1/gsap.min.js"></script>
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    <link rel="manifest" href="/site.webmanifest">
+    <link rel="stylesheet" href="/styles.css?v=0.0.3">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gl-matrix/2.8.1/gl-matrix-min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/matter-js/0.18.0/matter.min.js" integrity="sha512-5T245ZTH0m0RfONiFm2NF0zcYcmAuNzcGyPSQ18j8Bs5Pbfhp5HP1hosrR8XRt5M3kSRqzjNMYpm2+it/AUX/g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-    <script src="/out.min.js?v=0.0.2"></script>
+    <script src="/out.min.js?v=0.0.3"></script>
     <!-- <script src="/src/js/wavify.js"></script>
     <script src="/src/js/color-interpolator.js"></script>
     <script src="/src/js/wave-divider.js"></script>
     <script src="/src/js/icon-background.js"></script> -->
+    <style>
+        @keyframes hint-anim {
+            0% {
+                transform: translateY(-50px);
+                opacity: 0;
+            }
+            20% {
+                opacity: 1;
+            }
+            70% {
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(170px);
+                opacity: 0;
+            }
+        }
+
+        .scroll-hint {
+            opacity: 0;
+            animation-name: hint-anim;
+            animation-duration: 2s;
+            animation-timing-function: ease;
+            animation-iteration-count: infinite;
+        }
+
+        #scroll-hints {
+            opacity: 0;
+            transition: opacity 0.2s; 
+        }
+
+        #scroll-hints.show {
+            opacity: 1;
+        }
+    </style>
 </head>
 <body class="bg-gray-900">
-    <div class="sm:h-[95vh] h-[90vh] mx-0 px-4 w-full flex items-center justify-center text-white text text-5xl md:text-8xl lg:text-9xl relative">
+    <div class="sm:h-[95vh] h-[90vh] mx-0 px-4 w-full flex items-center justify-center text-white text text-5xl md:text-8xl lg:text-9xl relative bg-gradient-to-b from-[#000014] via-[#101032] to-[#201032]">
         <div class="absolute w-full h-full" id="icon-background"></div>
         <p class="text-center z-10 pointer-events-none" style="text-shadow: 5px 5px 10px #000000;" id="name">***REMOVED*** Barton</p>
         <!-- <a href="#section-2" class="z-10 absolute bottom-1 hover:bottom-2 bg-teal-800 h-20 aspect-square p-4 rounded shadow-2xl hover:bg-teal-700 duration-200">
@@ -31,18 +70,15 @@
                 <img class="z-10 -rotate-90" src="/src/resources/down-arrow.svg"></svg>
             </a>
         </div>
-        <svg class="absolute bottom-0 pointer-events-none" width="100%" height="150px" version="1.1" xmlns="http://www.w3.org/2000/svg" id="divider1"><defs></defs>
-            <g id="waves1"></g>
-            <mask id="wavesMask">
-                <rect id="bg" x="0" y="0" width="100%" height="100%" fill="white"/>
-                <g transform="translate(0, 0)" class="wavesMaskGroup">
-                    <circle cx="0" cy="0" r="60"/>
-                </g>
-            </mask>
-            <g transform="translate(0, 0)" class="wavesMaskGroup">
-                <path d="M 70 0 A 70 70 0 0 1 0 70 A 70 70 0 0 1 -70 0 A 70 70 0 0 1 0 -70 A 70 70 0 0 1 70 0 Z" style="fill: none; stroke: rgb(17, 94, 89); stroke-width: 20px;" bx:origin="-0.675585 -1.311441"/>
-            </g>
-        </svg>
+        <div id="scroll-hints" class="z-10">
+            <img class="absolute w-[10vw] bottom-0 right-10 pointer-events-none aspect-square scroll-hint rotate-0" src="/src/resources/down-arrow.svg"></img>
+            <img class="absolute w-[10vw] bottom-0 left-10 pointer-events-none aspect-square scroll-hint rotate-0" src="/src/resources/down-arrow.svg"></img>
+            <img class="absolute w-[10vw] bottom-0 right-10 pointer-events-none aspect-square scroll-hint rotate-0" style="animation-delay: 0.2s;" src="/src/resources/down-arrow.svg"></img>
+            <img class="absolute w-[10vw] bottom-0 left-10 pointer-events-none aspect-square scroll-hint rotate-0" style="animation-delay: 0.2s;"  src="/src/resources/down-arrow.svg"></img>
+            <img class="absolute w-[10vw] bottom-0 right-10 pointer-events-none aspect-square scroll-hint rotate-0" style="animation-delay: 0.4s;" src="/src/resources/down-arrow.svg"></img>
+            <img class="absolute w-[10vw] bottom-0 left-10 pointer-events-none aspect-square scroll-hint rotate-0" style="animation-delay: 0.4s;"  src="/src/resources/down-arrow.svg"></img>
+        </div>
+        <canvas class="absolute bottom-0 pointer-events-none w-full h-[200px]" id="waves"></canvas>
     </div>
     <div class="min-h-[50vh] w-full text-center bg-teal-800 p-8" id="section-2">
         <h1 class="text-white relative text-3xl lg:text-5xl m-2" id="iconName">Click the arrows above,</h1>
@@ -66,13 +102,28 @@
             </div>
         </div>
     </div>
-    <svg class="bg-gray-900 rotate-180" width="100%" height="500px" version="1.1" xmlns="http://www.w3.org/2000/svg" id="divider2"><defs></defs></svg>
-    <div class="h-screen w-full flex items-center justify-center text-center bg-gray-900 text-white relative text-3xl lg:text-5xl p-8" id="section-3">
-        <p class="">This is still a work in progress, but it's getting closer to being done!</p>
+    <div class="bg-gradient-to-t from-[#000014] via-[#101032] to-[#201032]">
+        <canvas class="rotate-180 w-full h-[50vh]" id="waves2"></canvas>
+        <div class="h-screen w-full flex items-center justify-center text-center text-white relative text-3xl lg:text-5xl p-8" id="section-3">
+            <p class="">This is still a work in progress, but it's getting closer to being done!</p>
+        </div>
     </div>
     <script>
-        GenerateWaves("#divider1", 4, 80, [45, 212, 191], [17, 94, 89], 1, 1, "#waves1", "#wavesMask"); // [19, 78, 74]
-        GenerateWaves("#divider2", 15, 180, [45, 212, 191], [17, 94, 89], 1, 1, "#divider2", "none"); // [192, 132, 252], [88, 28, 135],
+        //GenerateWaves("#divider1", 4, 80, [45, 212, 191], [17, 94, 89], 1, 1, "#waves1", "#wavesMask"); // [19, 78, 74]
+        //GenerateWaves("#divider2", 15, 180, [45, 212, 191], [17, 94, 89], 1, 1, "#divider2", "none"); // [192, 132, 252], [88, 28, 135],
+        const canvas = document.getElementById('waves');
+        const webWaves = GenerateNewWaves(canvas, {
+            count: 4,
+            lengthA: 0.5,
+            lengthB: 0.7,
+            holeSize: 80
+        });
+        webWaves.startAnimation();
+
+        const canvas2 = document.getElementById('waves2');
+        const webWaves2 = GenerateNewWaves(canvas2, {
+        });
+        webWaves2.startAnimation();
     </script>
 </body>
 </html>

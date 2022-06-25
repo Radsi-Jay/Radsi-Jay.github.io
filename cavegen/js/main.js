@@ -522,29 +522,41 @@ async function init() {
 
     // MOVE PLAYER TO INSIDE CAVE
 
-    const seg = caveGen.segments.find((seg) => seg.x == 0 && seg.y == 0 && seg.z == 0);
-    const posArray = seg.mc.geometry.getAttribute("position").array;
-    const normArray = seg.mc.geometry.getAttribute("normal").array;
+    // Attempts to find a chunk with geometry 20 times
+    for (let chunkX = 0; chunkX < 200; chunkX++) {
+        const seg = caveGen.segments.find((seg) => seg.x == chunkX && seg.y == 0 && seg.z == 0);
+        const posArray = seg.mc.geometry.getAttribute("position").array;
+        const normArray = seg.mc.geometry.getAttribute("normal").array;
 
-    for (let i = 0; i < posArray.length; i+=3) {
-        const x = posArray[i + 0];
-        const y = posArray[i + 1];
-        const z = posArray[i + 2];
+        console.log(`Attempting to spawn player inside chunk: ${chunkX}, 0, 0`);
 
-        if (!(x == 0 && y == 0 && z == 0)) {
-            const pos = new THREE.Vector3(x * caveScale, y * caveScale, z * caveScale);
+        for (let i = 0; i < posArray.length; i+=3) {
+            const x = posArray[i + 0];
+            const y = posArray[i + 1];
+            const z = posArray[i + 2];
 
-            const nx = normArray[i + 0];
-            const ny = normArray[i + 1];
-            const nz = normArray[i + 2];
+            if (!(x == 0 && y == 0 && z == 0)) {
+                const pos = new THREE.Vector3(x * caveScale, y * caveScale, z * caveScale);
 
-            pos.addScaledVector((new THREE.Vector3(nx, ny, nz)).normalize(), 10);
+                const nx = normArray[i + 0];
+                const ny = normArray[i + 1];
+                const nz = normArray[i + 2];
 
-            camera.position.copy(pos);
+                pos.addScaledVector((new THREE.Vector3(nx, ny, nz)).normalize(), 10);
 
-            break;
+                camera.position.copy(pos).add(seg.mc.position);
+
+                console.log(`${x}, ${y}, ${z}`);
+                console.log(`Spawned player inside chunk: ${chunkX}, 0, 0`);
+                chunkX = 1000; // Breaks second loop
+                break;
+            }
+        }
+        if (chunkX !== 1000) {
+            await caveGen.generateAround(chunkX, 0, 0);
         }
     }
+    
 
     player.checkCollisions = true;
     
@@ -667,7 +679,7 @@ function animate() {
 
     player.updatePhysics();
 
-    const pos = new THREE.Vector3(Math.round(camera.position.x / caveChunkSize), Math.round(camera.position.y / caveChunkSize), Math.round(camera.position.z / caveChunkSize));
+    const pos = calculateGridPosition(camera.position).round();
 
     if (!pos.equals(playerChunkPos)) {
         caveGen.generateAround(pos.x, pos.y, pos.z);
@@ -742,6 +754,14 @@ function easeOutBack(x) {
     return 1 + c3 * Math.pow(x - 1, 3) + c1 * Math.pow(x - 1, 2);
 }
 
+function calculateGridPosition(position) {
+    return new THREE.Vector3(
+        position.x / caveChunkSize, 
+        position.y / caveChunkSize, 
+        position.z / caveChunkSize
+    );
+}
+
 document.addEventListener("wheel", onDocumentScroll, false);
 function onDocumentScroll(event) {
     if (event.deltaY < 0) {
@@ -797,8 +817,13 @@ function tryLaunchSphere() {
 
         launch_sphere.moving = true;
         launch_sphere.age = params.throw_light_lifetime;
+        launch_sphere.ageSpeed = 1;
         launchedLights.push(launch_sphere);
         
+        // Tries to prepare next orb if there aren't any left by making oldest age faster
+        const launch_sphere_next = pooledLaunchLights.children.findIndex(x => x.age == 0);
+        if (launch_sphere_next !== -1) return;
+        launchedLights[0].ageSpeed = 10;
     }
 }
 
@@ -849,7 +874,7 @@ function updateLaunch() {
             lSphere.position.add(lSphere.velocity);
             // lSphere.position.add(new THREE.Vector3().copy(lSphere.velocity).multiplyScalar(Math.max(0, 2*lSphere.age/params.throw_light_lifetime - 1.8)));
         }
-        lSphere.age--;
+        lSphere.age -= lSphere.ageSpeed;
         lSphere.children[0].distance = Math.min(1, (lSphere.age / params.throw_light_lifetime) * 3) * params.throw_light_distance;
         
         // Update hum volume
@@ -858,13 +883,15 @@ function updateLaunch() {
         }
         // Disappear into wall
         if (lSphere.age < 50) {
-            lSphere.position.add(lSphere.velocity);
+            lSphere.position.add(lSphere.velocity.clone().multiplyScalar(lSphere.ageSpeed));
             // lSphere.scale.setScalar(lSphere.age/50 * params.throw_light_size);
         }
     });
     launchedLights.filter(x => x.age <= 0).forEach(old => {
         const index = launchedLights.indexOf(old);
         if (index > -1) launchedLights.splice(index, 1);
+
+        old.age = 0;
 
         old.children[0].distance = 0;
         old.children[0].intensity = 0;

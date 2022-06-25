@@ -17,7 +17,7 @@ class Player {
 
         this.GRAVITY = 30;
         
-        this.STEPS_PER_FRAME = 5;
+        this.STEPS_PER_FRAME = 1;
         
         this.chunkOctrees = [];
         
@@ -79,7 +79,7 @@ class Player {
             this.raycaster.set(this.camera.position, dir);
             const intersects = this.raycaster.intersectObjects(this.collidible.children);
             intersects.forEach(intersect => {
-                this.playerVelocity.addScaledVector(dir, -(0.1/intersect.distance));
+                this.playerVelocity.addScaledVector(dir, -(0.5/intersect.distance));
                 this.shortestCast = Math.min(intersect.distance, this.shortestCast);
             });
         });
@@ -103,6 +103,27 @@ class Player {
         this.playerVelocity.clampLength(0, 35);
 
         const deltaPosition = this.playerVelocity.clone().multiplyScalar( deltaTime );
+
+        // Code that checks if deltaposition moves the player through a wall and puts them back inside the world
+        if (this.checkCollisions) {
+            this.raycaster.set(this.camera.position, deltaPosition.clone().normalize());
+            const intersects = this.raycaster.intersectObjects(this.collidible.children);
+            if (intersects.length > 0) {
+                let minIntersect = intersects[0];
+                for (let i = 0; i < intersects.length; i++) {
+                    const intersect = intersects[i];
+                    if (intersect.distance < minIntersect.distance) 
+                        minIntersect = intersect;
+                }
+                const currentLength = deltaPosition.length();
+                if (currentLength + 0.05 > minIntersect.distance) {
+                    this.playerVelocity.reflect(minIntersect.face.normal);
+                    this.playerVelocity.multiplyScalar(0.5);
+                    deltaPosition.add(this.playerVelocity.clone().multiplyScalar( deltaTime ));
+                }
+            }
+        }
+
         this.camera.position.add( deltaPosition );
     
         if (this.checkCollisions)
@@ -159,11 +180,11 @@ class Player {
     
         }
     
-        if ( this.keyStates['Space'] ) {
+        if ( this.keyStates['KeyE'] || this.keyStates['Space'] ) {
             this.inputVector.add( new THREE.Vector3(0, 1, 0) );
         }
 
-        if ( this.keyStates['ControlLeft'] ) {
+        if ( this.keyStates['KeyQ'] || this.keyStates['ControlLeft'] ) {
             this.inputVector.add( new THREE.Vector3(0, -1, 0) );
         }
 
