@@ -6,6 +6,11 @@
     <meta name="viewport" content="user-scalable=no, width=device-width, initial-scale=1.0">
     <meta name="apple-mobile-web-app-capable" content="yes" />
     <title>***REMOVED*** Barton</title>
+    <meta content="***REMOVED*** Barton" property="og:title" />
+    <meta content="A portfolio site that displays ***REMOVED*** &quot;RadiantInferno&quot; Barton's work, such as games, animations, and links to socials." property="og:description" />
+    <meta content="https://radiantinferno.github.io" property="og:url" />
+    <meta content="https://i.ibb.co/zfQGhQ5/***REMOVED***-Barton-Website-Screenshot.png" property="og:image" />
+    <meta content="#115E59" data-react-helmet="true" name="theme-color" />
     <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
     <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
     <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
@@ -21,17 +26,17 @@
     <style>
         @keyframes hint-anim {
             0% {
-                transform: translateY(-50px);
+                transform: translateY(200px) rotate(180deg);
                 opacity: 0;
             }
-            20% {
+            30% {
                 opacity: 1;
             }
-            70% {
+            60% {
                 opacity: 1;
             }
             100% {
-                transform: translateY(170px);
+                transform: translateY(-100px) rotate(180deg);
                 opacity: 0;
             }
         }
@@ -40,7 +45,7 @@
             opacity: 0;
             animation-name: hint-anim;
             animation-duration: 2s;
-            animation-timing-function: ease;
+            animation-timing-function: cubic-bezier(0.45, 0, 0.55, 1);
             animation-iteration-count: infinite;
         }
 

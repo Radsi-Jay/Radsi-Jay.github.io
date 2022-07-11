@@ -70,5 +70,21 @@
       "contentID": "threejs", 
       "title": "Three.js",
       "category": "Library"
+    },
+    {
+      "texture": "/src/resources/background-icons/youtube.png",
+      "scale": 0.27,
+      "radius": 30,
+      "contentID": "youtube", 
+      "title": "Youtube",
+      "category": "Social"
+    },
+    {
+      "texture": "/src/resources/background-icons/linkedin.png",
+      "scale": 0.25,
+      "radius": 30,
+      "contentID": "linkedin", 
+      "title": "LinkedIn",
+      "category": "Social"
     }
   ]
