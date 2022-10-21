@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        html, body {
+            width: 100%;
+            height: 100%;
+            background: rgb(0,13,29);
+            background: linear-gradient(0deg, rgba(0,13,29,1) 0%, rgba(18,60,110,1) 49%, rgba(16,56,124,1) 100%);
+            background-repeat: no-repeat;
+            overflow: hidden;
+            color: #335;
+        }
+
+        .content {
+            background: rgb(169,179,193);
+            background: linear-gradient(0deg, rgba(169,179,193,1) 0%, rgba(213,223,233,1) 49%, rgba(236,239,244,1) 100%);
+            width: 80%;
+            height: 90%;
+            border-radius: 20px;
+            position: absolute;
+            left: 10%;
+            top: 5%;
+            box-shadow: 0px 0px 20px black;
+            display: flex;
+        }
+
+        .title {
+            height: 15%;
+        }
+
+        .controls {
+            width: 60%;
+            padding: 30px;
+        }
+
+        .textareaContainer {
+            position: relative;
+        }
+
+        .textareaContainer textarea {
+            width: 100%;
+            height: 100%;
+            box-sizing: border-box;
+            resize: none;
+            border: none;
+        }
+
+        .textareaContainer button {
+            position: absolute;
+            bottom: 10px;
+            right: 5px;
+        }
+
+        .imageArea {
+            width: 40%;
+        }
+
+        input {
+            font-size: xx-large;
+            width: 3rem;
+            outline: none;
+            background-color: transparent;
+            border: none;
+            border-bottom: 2px solid #adf;
+            padding: 0;
+            transition: all 0.3s;
+        }
+
+        textarea {
+            border: none;
+            height: 30%;
+            box-shadow: 0px 0px 5px black;
+        }
+
+        input:focus {
+            border-bottom: 2px solid #8af;
+        }
+
+        p {
+            font-size: xx-large;
+        }
+
+        label {
+            font-size: xx-large;
+        }
+
+        input[type=number]::-webkit-inner-spin-button {
+            opacity: 1
+        }
+
+        .fillWidth {
+            width: 100%;
+        }
+
+        .fillHeight {
+            height: 100%;
+        }
+
+        #copyButton {
+            border: none;
+            font-size: larger;
+            background-color: #fff;
+            box-shadow: 0px 0px 5px black;
+            width: 5rem;
+            transition: all 100ms;
+        }
+
+        #copyButton.copyDone {
+            background-color: #3fa;
+        }
+
+        #errorText {
+            font-size: X-large;
+            font-weight: bolder;
+        }
+
+        #errorText.error {
+            color: #a33;
+        }
+
+        #errorText.warning {
+            color: #880;
+        }
+
+        #errorText.normal {
+            color: #585;
+        }
+    </style>
+</head>
+<body>
+    <div class="content">
+        <div class="controls">
+            <div class="title">
+                <img class="fillHeight" src="./CamelStackerTitle.png">
+            </div>
+            <p>I want a stack <input type="number" id="camelCounter"> camels tall!</label>
+            <p id="errorText" class="normal">It's camel stackin' time</p>
+            <label for="output">Here is your Command:</label>
+            <br>
+            <div class="textareaContainer">
+                <textarea id="output" rows="20" readonly></textarea>
+                <button id="copyButton">Copy</button>
+            </div>
+        </div>
+        <div class="imageArea">
+            <img class="fillWidth" src="./CamelStack.png">
+        </div>
+    </div>
+    
+    <script>
+        const input = document.querySelector("#camelCounter");
+        const output = document.querySelector("#output");
+        const copyButton = document.querySelector("#copyButton");
+        const errorText = document.querySelector("#errorText");
+
+        const stacked = `Passengers:[{id:camelZ},{id:camelZ}]`;
+        const template = `/summon minecraft:camel ~ ~ ~ {Z}`;
+
+        function Update(num) {
+            let result = template;
+
+            for (let i = 0; i < parseInt(num); i++) {
+                if (i == 0) {
+                    result = result.replaceAll('Z', stacked);
+                } else {
+                    result = result.replaceAll('Z', ',' + stacked);
+                }
+            }
+
+            result = result.replaceAll('Z', '');
+
+            output.innerText = result;
+
+            copyButton.innerText = "Copy";
+            copyButton.classList.remove("copyDone");
+        }
+
+        input.value = 2;
+        Update(2);
+
+        input.addEventListener("input", (event) => {
+            let inputNum = parseInt(input.value);
+
+            errorText.classList.remove("error");
+            errorText.classList.remove("warning");
+            errorText.classList.remove("normal");
+
+            if (inputNum > 15) {
+                errorText.innerText = "This command won't fit in a command block, and trying to generate a command for more than 15 will get REALLY laggy. Clamped the number to 15 so it wouldn't freeze";
+                errorText.classList.add("error");
+            } else if (inputNum > 9) {
+                errorText.innerText = "This command won't fit in a command block! Can't go taller than 9 unfortunately. Still made the command for you though!";
+                errorText.classList.add("error");
+            } else if (inputNum > 2) {
+                errorText.innerText = "Command too long for chat, make sure to put it in a command block!";
+                errorText.classList.add("warning");
+            } else if (inputNum > 0) {
+                errorText.innerText = "It's camel stackin' time";
+                errorText.classList.add("normal");
+            } else {
+                errorText.innerText = "Just a regular ol' camel";
+                errorText.classList.add("normal");
+            }
+
+            inputNum = inputNum < 0 ? 0 : inputNum;
+            inputNum = inputNum > 15 ? 15 : inputNum;    
+            
+            input.value = inputNum;
+
+            Update(inputNum);
+        })
+
+        output.onclick = function(){
+            output.select();
+        }
+
+        copyButton.onclick = function(){
+            output.select();
+            document.execCommand('copy');
+            copyButton.innerText = "Copied!";
+            copyButton.classList.add("copyDone");
+        }
+
+    </script>
+</body>
+</html>
