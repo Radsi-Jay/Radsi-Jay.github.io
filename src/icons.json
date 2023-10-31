@@ -8,6 +8,46 @@
       "category": "Software"
     },
     {
+      "texture": "/src/resources/background-icons/blood-debt.png",
+      "scale": 0.6,
+      "radius": 40,
+      "contentID": "blood-debt", 
+      "title": "Blood Debt",
+      "category": "Game"
+    },
+    {
+      "texture": "/src/resources/background-icons/visa-freestyler.png",
+      "scale": 0.3,
+      "radius": 40,
+      "contentID": "visa-freestyler", 
+      "title": "Visa Freestyler",
+      "category": "Game"
+    },
+    {
+      "texture": "/src/resources/background-icons/pocket-dimensions.png",
+      "scale": 0.3,
+      "radius": 40,
+      "contentID": "pocket-dimensions", 
+      "title": "Pocket Dimensions",
+      "category": "Game"
+    },
+    {
+      "texture": "/src/resources/background-icons/sorbet-serenade.png",
+      "scale": 0.3,
+      "radius": 40,
+      "contentID": "sorbet-serenade", 
+      "title": "Sorbet Serenade",
+      "category": "Game"
+    },
+    {
+      "texture": "/src/resources/background-icons/noatw.png",
+      "scale": 0.3,
+      "radius": 40,
+      "contentID": "noatw", 
+      "title": "Nose of a Thousand Winds",
+      "category": "Game"
+    },
+    {
       "texture": "/src/resources/background-icons/clockwork-conundrum.png",
       "scale": 0.25,
       "radius": 40,
